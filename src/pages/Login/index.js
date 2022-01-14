@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import villiage from "../../assets/villiage.png";
+import village from "../../assets/village.png";
 import KakaoLogin from "react-kakao-login";
 import KakaoImg from "../../assets/kakao_login_medium_narrow.png";
 
@@ -74,7 +74,7 @@ const LoginBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(${villiage});
+  background: url(${village});
   background-size: cover;
   min-height: 100vh;
 `;
