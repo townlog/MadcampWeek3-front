@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import LoginPage from "./pages/Login";
+import TownPage from "./pages/TownPage";
 import GlobalStyle from "./styles/GlobalStyle";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -22,8 +24,9 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route exact path="/login" element={<LoginPage />} />
           <Route exact path="/register" element={<RegisterPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/home" element={<TownPage />} />
         </Routes>
       </BrowserRouter>
     </>
