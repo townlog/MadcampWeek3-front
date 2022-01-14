@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import TownPage from "./pages/TownPage";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, useRoutes } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import { getAccessToken } from "./api/Auth";
 import request from "./api/axios";
 import MyHousePage from "./pages/MyHousePage";
+import { getMe } from "./api/User";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "./actions/authAction";
+import routes from "./routes";
+
 
 const App = () => {
-  const [login, setLogin] = useState(false);
+  const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const token = getAccessToken();
+    request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     if (token) {
-      setLogin(true);
-      request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      (async () => {
+        const { status, user } = await getMe(token);
+        if (status) {
+          dispatch(logIn(user));
+        }
+      })();
     }
+    console.log(`loggedIn`, loggedIn);
   }, []);
 
   return (
@@ -30,6 +39,7 @@ const App = () => {
           <Route exact path="/house" element={<MyHousePage />} />
         </Routes>
       </BrowserRouter>
+      {useRoutes(routes(loggedIn))}
     </>
   );
 };
