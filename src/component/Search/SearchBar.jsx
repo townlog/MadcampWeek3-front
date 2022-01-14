@@ -10,7 +10,7 @@ const SearchBar = ({ result, updateField, keyword }) => {
         value={keyword}
         onChange={(e) => updateField("keyword", e.target.value)}
       ></input>
-      <SearchPreview name={name} updateText={updateText}></SearchPreview>
+      {/* <SearchPreview name={name} updateText={updateText}></SearchPreview> */}
     </div>
   );
 };
