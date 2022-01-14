@@ -21,7 +21,7 @@ const loginKakao = async (e, navigate, dispatch) => {
     const { user } = await getMe();
     dispatch(logIn(user));
     alert(`안녕하세요! ${user.nickname}님!`);
-    navigate("/home", { state: { accessToken } });
+    navigate("/town", { state: { accessToken } });
     return { loggedIn: true, user };
   } else if (!register) {
     alert("회원가입이 필요합니다");

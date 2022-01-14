@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, useRoutes } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
 import { getAccessToken } from "./api/Auth";
 import request from "./api/axios";
+import MyHousePage from "./pages/MyHousePage";
 import { getMe } from "./api/User";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "./actions/authAction";
