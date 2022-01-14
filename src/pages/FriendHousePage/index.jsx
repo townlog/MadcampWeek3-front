@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import townbackground from "../../assets/townbackground2.png";
+import { useLocation } from "react-router-dom";
+import room from "../../assets/room.jpg";
 import home1 from "../../assets/home1.png";
 import FriendHome from "../../component/friendhome.jsx";
 import mapicon from "../../assets/map.png";
@@ -9,18 +9,11 @@ import friendicon from "../../assets/friendicon.png";
 import MapModal from "../../component/Modals/MapModal.jsx";
 import FriendModal from "../../component/FriendModal/FriendModal";
 
-const TownPage = () => {
-  const [MapmodalOpen, setMapModalOpen] = useState(false);
+const FriendHousePage = () => {
+  const location = useLocation();
+
+  const user = location.state?.user;
   const [FriendmodalOpen, setFriendModalOpen] = useState(false);
-
-  const openMapModal = () => {
-    //TODO: switch modal
-    setMapModalOpen(true);
-  };
-
-  const closeMapModal = () => {
-    setMapModalOpen(false);
-  };
 
   const openFriendModal = () => {
     //TODO: switch modal
@@ -32,45 +25,36 @@ const TownPage = () => {
   };
 
   return (
-    <TownPageBackground>
-      <Homes>
+    <RoomBackground>
+      <Furniture>
         {/* <FriendHome srcname={home1} />
         <FriendHome srcname={home1} />
         <FriendHome srcname={home1} />
         <FriendHome srcname={home1} />
         <FriendHome srcname={home1} /> */}
-      </Homes>
-      <Map
-        onClick={openMapModal}
-        style={{
-          cursor: "pointer",
-        }}
-      />
-      <MapModal open={MapmodalOpen} close={closeMapModal}>
-        modalmodal
-      </MapModal>
+      </Furniture>
 
       <Friend onClick={openFriendModal} style={{ cursor: "pointer" }} />
       <FriendModal
         open={FriendmodalOpen}
         close={closeFriendModal}
       ></FriendModal>
-    </TownPageBackground>
+    </RoomBackground>
   );
 };
 
-const TownPageBackground = styled.div`
+const RoomBackground = styled.div`
   display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
-  background: url(${townbackground});
+  background: url(${room});
   background-size: cover;
   min-height: 100vh;
   min-width: 100vw;
 `;
 
-const Homes = styled.div`
+const Furniture = styled.div`
   //TODO: add hover
   display: flex;
   position: fixed;
@@ -80,18 +64,6 @@ const Homes = styled.div`
   width: 100vw;
   align-self: center;
   background-attachment: fixed;
-`;
-
-const Map = styled.div`
-  display: flex;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  background-image: url(${mapicon});
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 15vh;
-  width: 15vw;
 `;
 
 const Friend = styled.div`
@@ -105,4 +77,4 @@ const Friend = styled.div`
   height: 15vmin;
   width: 15vmin;
 `;
-export default TownPage;
+export default FriendHousePage;

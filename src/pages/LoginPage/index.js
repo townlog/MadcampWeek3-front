@@ -15,13 +15,13 @@ const loginKakao = async (e, navigate) => {
   if (status) {
     alert(`로그인 성공 ${token}`);
     request.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    console.log(token)
+    console.log(token);
     setAccessTokenToCookie(token);
     const {
       user: { nickname },
     } = await getMe();
     alert(`안녕하세요! ${nickname}님!`);
-    navigate("/home", { state: { accessToken } });
+    navigate("/town", { state: { accessToken } });
   } else if (!register) {
     alert("회원가입이 필요합니다");
     navigate("/register", { state: { accessToken } });

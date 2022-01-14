@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { getAccessToken } from "./api/Auth";
 import request from "./api/axios";
+import MyHousePage from "./pages/MyHousePage";
 
 const App = () => {
   const [login, setLogin] = useState(false);
@@ -25,7 +26,8 @@ const App = () => {
         <Routes>
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/home" element={<TownPage />} />
+          <Route exact path="/town" element={<TownPage />} />
+          <Route exact path="/house" element={<MyHousePage />} />
         </Routes>
       </BrowserRouter>
     </>
